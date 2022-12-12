@@ -34,7 +34,7 @@ class Item:
 
     
     def return_lst(self):
-        return [self.name, self.category, self.cost_price, self.original_price, self.selling_price, self.item_code, self.selling_price - self.cost_price]
+        return [self.name, self.category, self.cost_price, self.original_price, self.selling_price, self.item_code, round(self.selling_price - self.cost_price, 2)]
 
 
 class Market:
@@ -177,7 +177,7 @@ def view_cart(customer, table, only_view=False):
             total = total + values[x]*keys[x].selling_price
             discount = discount - values[x]*(keys[x].selling_price - keys[x].original_price)
     print (table)
-    print ("Current total price is: ", total)
+    print ("Current total price is: ₹", total)
     return [total, discount]
         
 

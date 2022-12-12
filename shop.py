@@ -2,10 +2,14 @@
 
 import definitions
 from prettytable import PrettyTable
+import sys
 
 if __name__ == "__main__":
     print ("Welcome to Akshay Stores!\n")
     metadata = definitions.login()
+
+    if metadata == 0:
+        sys.exit()
 
     if metadata[0] == "SWD":
         check = True
@@ -67,8 +71,8 @@ if __name__ == "__main__":
                 print ("Payment method : SWD account")
                 only_view = True
                 total, discount_availed = definitions.view_cart(customer, cart_table)
-                print ("Total price after CGST (2.7%): ", total + 2.7/100*(total))
-                print ("Total discount availed: ", discount_availed)
+                print ("Total price after CGST (2.7%): ₹", total + 2.7/100*(total))
+                print ("Total discount availed: ₹", discount_availed)
                 print ("Thank you for your succesful purchase!\n")
                 print ("---------------------------------------")
                 break
@@ -140,8 +144,8 @@ if __name__ == "__main__":
                     print ("CASH")
                 only_view = True
                 total, discount_availed = definitions.view_cart(customer, cart_table)
-                print ("Total price after CGST (2.7%): ", total + 2.7/100*(total))
-                print ("Total discount availed: ", discount_availed)
+                print ("Total price after CGST (2.7%): ₹", total + 2.7/100*(total))
+                print ("Total discount availed: ₹", discount_availed)
                 print ("Thank you for your succesful purchase!\n")
                 print ("---------------------------------------")
                 break
