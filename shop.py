@@ -148,6 +148,10 @@ if __name__ == "__main__":
 
             elif option == 6:
                 pass
+    elif metadata == "admin":
+        is_admin = True
+        print ("Here is the details of the market along with profits: ")
+        print (definitions.admin_views(is_admin, definitions.akshay))
     else:
-        pass
+        print ("Unexpected error!")
 

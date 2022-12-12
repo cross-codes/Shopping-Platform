@@ -2,6 +2,8 @@
 
 import random
 from prettytable import PrettyTable
+import getpass
+import admin_credentials
 
 isUPI = False
 
@@ -32,7 +34,7 @@ class Item:
 
     
     def return_lst(self):
-        return [self.name, self.category, self.cost_price, self.original_price, self.selling_price, self.is_discounted, self.item_code]
+        return [self.name, self.category, self.cost_price, self.original_price, self.selling_price, self.item_code, self.selling_price - self.cost_price]
 
 
 class Market:
@@ -133,7 +135,13 @@ def login():
                     print ("Invalid input. Try again.\n")
                     check_SWD = True
         elif admin_check == 2:
-            pass
+            username = str(input("Enter the administrator username: "))
+            pwd = getpass.getpass("Enter the password (hidden for safety): ")
+            if username == admin_credentials.admin_username and pwd == admin_credentials.admin_password:
+                return "admin"
+            else:
+                print ("Incorrect credentials entered")
+                return 0
         else:
             print ("Invalid input. Try again.\n")
             admin_check = True
@@ -177,8 +185,6 @@ def view_cart(customer, table, only_view=False):
 def delete_from_cart(customer, item_code, cur_total):
     lst = []
     item_lst = []
-    # print (customer.view_cart().values())
-    # print (customer.view_cart().keys())
     for item in customer.view_cart().keys():
         lst.append(Item.return_lst_notadmin(item))
         item_lst.append(item)
@@ -191,6 +197,14 @@ def delete_from_cart(customer, item_code, cur_total):
         else:
             continue
     return False
+
+
+def admin_views(is_admin, market_obj):
+    table = PrettyTable(["Name", "Category", "Cost Price",  "Original Price", "Selling Price", "Item Code", "Profit per item"])
+    for list_item in market_obj.all_items():
+        for item in list_item:
+            table.add_row(Item.return_lst(item))
+    return table
 
 # -------------------------------------------------------------------------------------------------------------------------
 
