@@ -136,7 +136,7 @@ def login():
                     check_SWD = True
         elif admin_check == 2:
             username = str(input("Enter the administrator username: "))
-            pwd = getpass.getpass("Enter the password (hidden for safety): ")
+            pwd = getpass.getpass("Enter the password (hidden for privacy): ")
             if username == admin_credentials.admin_username and pwd == admin_credentials.admin_password:
                 return "admin"
             else:
