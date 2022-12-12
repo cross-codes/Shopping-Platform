@@ -78,7 +78,22 @@ if __name__ == "__main__":
                 break
 
             elif option == 6:
-                pass
+                checker6 = True
+                while checker6:
+                    print ("(1) Search by name")
+                    print ("(2) Search by code")
+                    print ("(3) Exit")
+                    choice = int (input("Enter yor option: "))
+                    if choice == 1:
+                        name = str(input("Enter the keyword: "))
+                        print (definitions.akshay.search_by_name(name))
+                    elif choice == 2:
+                        code = str(input("Enter the item code: "))
+                        print (definitions.akshay.search_by_code(code))
+                    elif choice == 3:
+                        break
+                    else:
+                        print ("Invalid input. Try again \n")
 
     elif metadata[0] == "no_SWD":
         check = True
@@ -153,9 +168,8 @@ if __name__ == "__main__":
             elif option == 6:
                 pass
     elif metadata == "admin":
-        is_admin = True
         print ("Here is the details of the market along with profits: ")
-        print (definitions.admin_views(is_admin, definitions.akshay))
+        print (definitions.admin_views(definitions.akshay))
     else:
         print ("Unexpected error!")
 

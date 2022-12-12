@@ -57,15 +57,17 @@ class Market:
         return self.__available_items
 
     def search_by_name(self, name):
-        for item in self.__available_items.values():
-            if item.name == name:
-                return item
+        for list_item in self.__available_items.values():
+            for item in list_item:
+                if item.name == name:
+                    return item
         return None
 
     def search_by_code(self, code):
-        for item in self.__available_items.values():
-            if item.item_code == code:
-                return item
+        for list_item in self.__available_items.values():
+            for item in list_item:
+                if item.item_code == code:
+                    return item
         return None
 
 
@@ -199,12 +201,19 @@ def delete_from_cart(customer, item_code, cur_total):
     return False
 
 
-def admin_views(is_admin, market_obj):
+def admin_views(market_obj):
     table = PrettyTable(["Name", "Category", "Cost Price",  "Original Price", "Selling Price", "Item Code", "Profit per item"])
     for list_item in market_obj.all_items():
         for item in list_item:
             table.add_row(Item.return_lst(item))
     return table
+
+
+def search(option, param):
+    if option == 1:
+        pass
+    else:
+        pass
 
 # -------------------------------------------------------------------------------------------------------------------------
 
