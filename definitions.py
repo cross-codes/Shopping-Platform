@@ -158,8 +158,8 @@ def check_item_code(item_code, market_obj):
     return False
 
 
-def view_cart(customer, table, cur_total, discount_availed, only_view=False):
-    total = cur_total
+def view_cart(customer, table, discount_availed, only_view=False):
+    total = 0
     discount = discount_availed
     keys = list((customer.view_cart()).keys())
     values = list((customer.view_cart()).values())
@@ -174,19 +174,24 @@ def view_cart(customer, table, cur_total, discount_availed, only_view=False):
         
 
 
-def delete_from_cart(customer, item_code, market_obj):
-    keys = list((customer.view_cart()).keys())
-    values = list((customer.view_cart()).values())
-    for x in range(0, len(keys), 1):
-        if keys[x].item_code == item_code:
-                for list_item in market_obj.all_items():
-                    for item in list_item:
-                        lst = Item.return_lst_notadmin(item)
-                        if item_code == lst[3]:
-                            General_customer.pop_from_cart(item)
-                            return 
-    print ("Item not found")
-    return 
+def delete_from_cart(customer, item_code, cur_total):
+    lst = []
+    item_lst = []
+    # print (customer.view_cart().values())
+    # print (customer.view_cart().keys())
+    for item in customer.view_cart().keys():
+        lst.append(Item.return_lst_notadmin(item))
+        item_lst.append(item)
+    print (lst)
+    for z in range(0, len(lst), 1):    
+        if item_code.upper() == lst[z][4]:
+            qty = list(customer.view_cart().values())[z]
+            print (qty)
+            customer.pop_from_cart(item_lst[z])
+            cur_total = cur_total - lst[z][3]*qty
+            return (customer, cur_total)
+        else:
+            continue
 
 # -------------------------------------------------------------------------------------------------------------------------
 

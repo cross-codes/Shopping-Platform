@@ -10,6 +10,7 @@ if __name__ == "__main__":
     if metadata[0] == "SWD":
         check = True
         cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
+        customer = definitions.Student(metadata[1], metadata[2], metadata[3])
         total = 0
         discount_availed = 0
         while check:
@@ -28,7 +29,7 @@ if __name__ == "__main__":
                 print (market)
 
             elif option == 2:
-                customer = definitions.Student(metadata[1], metadata[2], metadata[3])
+                cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
                 code = str(input("Enter the item code: ")).upper()
                 in_market = definitions.check_item_code(code, definitions.akshay)
                 if type(in_market) == list and in_market[0]:
@@ -37,17 +38,18 @@ if __name__ == "__main__":
                     print ("Item added succesfully!")
                 else:
                     print ("Item not found!")
-                total, discount_availed = definitions.view_cart(customer, cart_table, total, discount_availed)
+                total, discount_availed = definitions.view_cart(customer, cart_table, discount_availed)
 
             elif option == 3:
-                customer = definitions.Student(metadata[1], metadata[2], metadata[3])
-                definitions.view_cart(customer, cart_table, total)
+                cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
+                definitions.view_cart(customer, cart_table, discount_availed)
                 code = str(input("Enter the item code: ")).upper()
-                definitions.delete_from_cart(customer, code, definitions.akshay)
+                cutsomer, total = definitions.delete_from_cart(customer, code, total)
 
             elif option == 4:
+                cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
                 only_view = True
-                definitions.view_cart(customer, cart_table, total, discount_availed, only_view)
+                definitions.view_cart(customer, cart_table, discount_availed)
                 only_view = False
 
             elif option == 5:
@@ -55,11 +57,11 @@ if __name__ == "__main__":
                 print ("AKSHAY SUPERMARKET")
                 print (f"Student Name: {metadata[2]}")
                 print (f"BITS ID: {metadata[1]}")
-                print ("Payment method : SWD Mess account")
+                print ("Payment method : SWD account")
                 only_view = True
-                total, discount_availed = definitions.view_cart(customer, cart_table, total, discount_availed, only_view)
+                total, discount_availed = definitions.view_cart(customer, cart_table, discount_availed)
                 print ("Total price after CGST (2.7%): ", total + 2.7/100*(total))
-                print ("Total discount availed: ", discount_availed - 2.7/100*(total))
+                print ("Total discount availed: ", discount_availed)
                 print ("Thank you for your succesful purchase!\n")
                 print ("---------------------------------------")
                 break
@@ -69,6 +71,7 @@ if __name__ == "__main__":
 
     elif metadata[0] == "no_SWD":
         check = True
+        customer = definitions.Non_SWD_Customer(metadata[1], metadata[2], definitions.isUPI)
         cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
         total = 0
         discount_availed = 0
@@ -88,7 +91,7 @@ if __name__ == "__main__":
                 print (market)
 
             elif option == 2:
-                customer = definitions.Non_SWD_Customer(metadata[1], metadata[2], definitions.isUPI)
+                cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
                 code = str(input("Enter the item code: ")).upper()
                 in_market = definitions.check_item_code(code, definitions.akshay)
                 if type(in_market) == list and in_market[0]:
@@ -97,10 +100,9 @@ if __name__ == "__main__":
                     print ("Item added succesfully!")
                 else:
                     print ("Item not found!")
-                total, discount_availed = definitions.view_cart(customer, cart_table, total, discount_availed)
+                total, discount_availed = definitions.view_cart(customer, cart_table, discount_availed)
 
             elif option == 3:
-                customer = definitions.Non_SWD_Customer(metadata[1], metadata[2], definitions.isUPI)
                 definitions.view_cart(customer, cart_table, total)
                 code = str(input("Enter the item code: ")).upper()
                 definitions.delete_from_cart(customer, code, definitions.akshay)
@@ -123,7 +125,7 @@ if __name__ == "__main__":
                 only_view = True
                 total, discount_availed = definitions.view_cart(customer, cart_table, total, discount_availed, only_view)
                 print ("Total price after CGST (2.7%): ", total + 2.7/100*(total))
-                print ("Total discount availed: ", discount_availed - 2.7/100*(total))
+                print ("Total discount availed: ", discount_availed)
                 print ("Thank you for your succesful purchase!\n")
                 print ("---------------------------------------")
                 break
