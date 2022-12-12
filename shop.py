@@ -38,28 +38,29 @@ if __name__ == "__main__":
                     print ("Item added succesfully!")
                 else:
                     print ("Item not found!")
-                total, discount_availed = definitions.view_cart(customer, cart_table, discount_availed)
+                total, discount_availed = definitions.view_cart(customer, cart_table)
 
             elif option == 3:
                 cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
-                definitions.view_cart(customer, cart_table, discount_availed)
+                definitions.view_cart(customer, cart_table)
                 code = str(input("Enter the item code: ")).upper()
                 cutsomer, total = definitions.delete_from_cart(customer, code, total)
 
             elif option == 4:
                 cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
                 only_view = True
-                definitions.view_cart(customer, cart_table, discount_availed)
+                definitions.view_cart(customer, cart_table)
                 only_view = False
 
             elif option == 5:
+                cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
                 print ("----------------------------------------")
                 print ("AKSHAY SUPERMARKET")
                 print (f"Student Name: {metadata[2]}")
                 print (f"BITS ID: {metadata[1]}")
                 print ("Payment method : SWD account")
                 only_view = True
-                total, discount_availed = definitions.view_cart(customer, cart_table, discount_availed)
+                total, discount_availed = definitions.view_cart(customer, cart_table)
                 print ("Total price after CGST (2.7%): ", total + 2.7/100*(total))
                 print ("Total discount availed: ", discount_availed)
                 print ("Thank you for your succesful purchase!\n")

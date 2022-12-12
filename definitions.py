@@ -158,9 +158,9 @@ def check_item_code(item_code, market_obj):
     return False
 
 
-def view_cart(customer, table, discount_availed, only_view=False):
+def view_cart(customer, table, only_view=False):
     total = 0
-    discount = discount_availed
+    discount = 0
     keys = list((customer.view_cart()).keys())
     values = list((customer.view_cart()).values())
     for x in range (0, len(keys), 1):
