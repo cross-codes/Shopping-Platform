@@ -44,7 +44,13 @@ if __name__ == "__main__":
                 cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
                 definitions.view_cart(customer, cart_table)
                 code = str(input("Enter the item code: ")).upper()
-                cutsomer, total = definitions.delete_from_cart(customer, code, total)
+                values = definitions.delete_from_cart(customer, code, total)
+                if type(values) == bool:
+                    print ("Item not found!")
+                else:
+                    print ("Item removed!")
+                    customer = values[0]
+                    total = values[1]
 
             elif option == 4:
                 cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
@@ -101,19 +107,28 @@ if __name__ == "__main__":
                     print ("Item added succesfully!")
                 else:
                     print ("Item not found!")
-                total, discount_availed = definitions.view_cart(customer, cart_table, discount_availed)
+                total, discount_availed = definitions.view_cart(customer, cart_table)
 
             elif option == 3:
-                definitions.view_cart(customer, cart_table, total)
+                cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
+                definitions.view_cart(customer, cart_table)
                 code = str(input("Enter the item code: ")).upper()
-                definitions.delete_from_cart(customer, code, definitions.akshay)
+                values = definitions.delete_from_cart(customer, code, total)
+                if type(values) == bool:
+                    print ("Item not found!")
+                else:
+                    print ("Item removed!")
+                    customer = values[0]
+                    total = values[1]
 
             elif option == 4:
+                cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
                 only_view = True
-                definitions.view_cart(customer, cart_table, total, discount_availed, only_view)
+                definitions.view_cart(customer, cart_table)
                 only_view = False
 
             elif option == 5:
+                cart_table = PrettyTable(["Item", "Code", "Quantity", "Original Price", "Price"])
                 print ("--------------------------------------------")
                 print ("AKSHAY SUPERMARKET")
                 print (f"Student Name: {metadata[2]}")
@@ -124,7 +139,7 @@ if __name__ == "__main__":
                 else:
                     print ("CASH")
                 only_view = True
-                total, discount_availed = definitions.view_cart(customer, cart_table, total, discount_availed, only_view)
+                total, discount_availed = definitions.view_cart(customer, cart_table)
                 print ("Total price after CGST (2.7%): ", total + 2.7/100*(total))
                 print ("Total discount availed: ", discount_availed)
                 print ("Thank you for your succesful purchase!\n")

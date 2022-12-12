@@ -182,16 +182,15 @@ def delete_from_cart(customer, item_code, cur_total):
     for item in customer.view_cart().keys():
         lst.append(Item.return_lst_notadmin(item))
         item_lst.append(item)
-    print (lst)
     for z in range(0, len(lst), 1):    
         if item_code.upper() == lst[z][4]:
             qty = list(customer.view_cart().values())[z]
-            print (qty)
             customer.pop_from_cart(item_lst[z])
             cur_total = cur_total - lst[z][3]*qty
             return (customer, cur_total)
         else:
             continue
+    return False
 
 # -------------------------------------------------------------------------------------------------------------------------
 
