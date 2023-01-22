@@ -190,7 +190,22 @@ if __name__ == "__main__":
                 break
 
             elif option == 6:
-                pass
+                checker6 = True
+                while checker6:
+                    print("(1) Search by name")
+                    print("(2) Search by code")
+                    print("(3) Exit")
+                    choice = int(input("Enter yor option: "))
+                    if choice == 1:
+                        name = str(input("Enter the keyword: "))
+                        print(akshay_stores.search_by_name(name))
+                    elif choice == 2:
+                        code = str(input("Enter the item code: "))
+                        print(akshay_stores.search_by_code(code))
+                    elif choice == 3:
+                        break
+                    else:
+                        print("Invalid input. Try again \n")
     elif metadata == "admin":
         print("Here is the details of the market along with profits: ")
         print(utils.admin_views(akshay_stores))
