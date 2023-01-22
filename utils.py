@@ -114,25 +114,9 @@ def setup_data_for_testing(market_obj):
 
     i1_s = Item("Ruled 200 pages diary", "Stationery", 250, 270, 270, True, "S1")
     i2_s = Item("ITC - 100 pages ruled notebook", "Stationery", 70, 75, 75, True, "S2")
-    i3_s = Item(
-        "Reynolds - Ball point pen (pack of 10)",
-        "Stationery",
-        100,
-        100,
-        100,
-        True,
-        "S3",
-    )
+    i3_s = Item("Reynolds - Ball point pen (pack of 10)","Stationery",100, 100, 100, True, "S3")
     i4_s = Item("DOMS - 15cm scale", "Stationery", 5, 5, 5, True, "S4")
-    i5_s = Item(
-        "Casio - 991ES Plus Scientific calculator",
-        "Stationery",
-        800,
-        900,
-        900,
-        True,
-        "S5",
-    )
+    i5_s = Item("Casio - 991ES Plus Scientific calculator","Stationery",800,900,900,True,"S5",)
     stationery = [i1_s, i2_s, i3_s, i4_s, i5_s]
     for y in range(0, len(stationery), 1):
         cur_item = stationery[y]
@@ -143,9 +127,7 @@ def setup_data_for_testing(market_obj):
     i1_c = Item("USPA - Polo T Shirt", "Clothes", 450, 500, 500, True, "C1")
     i2_c = Item("Umbro - Pullover", "Clothes", 1000, 1200, 1200, True, "C2")
     i3_c = Item("Hush Puppies - Sandals", "Clothes", 350, 400, 400, True, "C3")
-    i4_c = Item(
-        "Jockey - Pack of 5 Men's underwear", "Clothes", 700, 750, 750, True, "C4"
-    )
+    i4_c = Item("Jockey - Pack of 5 Men's underwear", "Clothes", 700, 750, 750, True, "C4")
     i5_c = Item("Levis - Cargo pant", "Clothes", 1200, 1300, 1300, True, "C5")
     clothes = [i1_c, i2_c, i3_c, i4_c, i5_c]
     for z in range(0, len(clothes), 1):
