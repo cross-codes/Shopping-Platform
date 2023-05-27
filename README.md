@@ -3,7 +3,7 @@
 
 A python program written with object - oriented programming in mind, to emulate a local supermarket's billing and purchase system.
 
-Current version v1.1
+Current version : 1.1
 </div>
 
 ---
